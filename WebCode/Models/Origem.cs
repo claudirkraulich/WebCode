@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WebCode.Models
 {
@@ -9,5 +6,21 @@ namespace WebCode.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-    }
+        public ICollection<Demanda> Demandas { get; set; } = new List<Demanda>();
+
+        public Origem()
+        {
+        }
+
+        public Origem(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
+
+        public void AddDemanda(Demanda demanda)
+        {
+            Demandas.Add(demanda);
+        }
+    }        
 }

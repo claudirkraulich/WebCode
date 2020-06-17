@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.EntityFrameworkCore;
 using WebCode.Models;
 
@@ -14,6 +11,8 @@ namespace WebCode.Data
         {
         }
 
-        public DbSet<WebCode.Models.Origem> Origem { get; set; }
+        public DbSet<Origem> Origem { get; set; }
+        public DbSet<Demanda> Demanda { get; set; }
+        public DbSet<Atividade> Atividade { get; set; }
     }
 }
