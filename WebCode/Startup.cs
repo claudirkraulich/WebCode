@@ -37,7 +37,8 @@ namespace WebCode
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<WebCodeContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebCodeContext")));
+                    options.UseMySql(Configuration.GetConnectionString("WebCodeContext"), builder =>
+                        builder.MigrationsAssembly("WebCode")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
