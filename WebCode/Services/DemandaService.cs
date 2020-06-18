@@ -19,6 +19,12 @@ namespace WebCode.Services
         {
             return _context.Demanda.ToList();
         }
-    }
 
+        public void Insert(Demanda obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
+
+    }
 }

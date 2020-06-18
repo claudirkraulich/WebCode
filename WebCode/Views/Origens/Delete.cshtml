@@ -1,12 +1,12 @@
 ﻿@model WebCode.Models.Origem
 
 @{
-    ViewData["Title"] = "Deletar";
+    ViewData["Title"] = "Excluir";
 }
 
-<h2>Delete</h2>
+<h2>Excluir</h2>
 
-<h3>Você tem certeza que quer deletar o registro?</h3>
+<h3>Você tem certeza que deseja Excluir o registro?</h3>
 <div>
     <h4>Origem</h4>
     <hr />
@@ -21,7 +21,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Deletar" class="btn btn-default" /> |
+        <input type="submit" value="Excluir" class="btn btn-default" /> |
         <a asp-action="Index">Voltar para a Lista</a>
     </form>
 </div>
