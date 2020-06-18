@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using WebCode.Models;
+using WebCode.Data;
 
-namespace WebCode.Data
+namespace WebCode.Models
 {
     public class WebCodeContext : DbContext
     {
@@ -14,5 +14,6 @@ namespace WebCode.Data
         public DbSet<Origem> Origem { get; set; }
         public DbSet<Demanda> Demanda { get; set; }
         public DbSet<Atividade> Atividade { get; set; }
+
     }
 }
