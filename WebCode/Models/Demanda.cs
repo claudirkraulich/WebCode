@@ -10,7 +10,7 @@ namespace WebCode.Models
 
         public int Id { get; set; }
         public string Numero { get; set; }
-        public DateTime DataPublicacao { get; set; }
+        public DateTime Data { get; set; }
         public Origem Origem { get; set; }
         public TipoDemanda TipoDemanda { get; set; }
         public string ProcessoOrigem { get; set; }
@@ -26,11 +26,11 @@ namespace WebCode.Models
         {
         }
 
-        public Demanda(int id, string numero, DateTime dataPublicacao, Origem origem, TipoDemanda tipoDemanda, string processoOrigem, string descricao, string numeroProa, DateTime dataInicial, int prazo, DateTime dataFinal, StatusDemanda status)
+        public Demanda(int id, string numero, DateTime data, Origem origem, TipoDemanda tipoDemanda, string processoOrigem, string descricao, string numeroProa, DateTime dataInicial, int prazo, DateTime dataFinal, StatusDemanda status)
         {
             Id = id;
             Numero = numero;
-            DataPublicacao = dataPublicacao;
+            Data = data;
             Origem = origem;
             TipoDemanda = tipoDemanda;
             ProcessoOrigem = processoOrigem;

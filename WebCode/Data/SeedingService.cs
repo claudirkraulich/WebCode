@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace WebCode.Data
             }
 
             Origem o1 = new Origem(1, "TCE");
-
+           
             _context.Origem.AddRange(o1);
 
             _context.SaveChanges();

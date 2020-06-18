@@ -58,7 +58,7 @@ namespace WebCode.Migrations
 
                     b.Property<DateTime>("DataInicial");
 
-                    b.Property<DateTime>("DataPublicacao");
+                    b.Property<DateTime>("Data");
 
                     b.Property<string>("Descricao");
 

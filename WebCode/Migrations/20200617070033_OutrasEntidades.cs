@@ -15,7 +15,7 @@ namespace WebCode.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Numero = table.Column<string>(nullable: true),
-                    DataPublicacao = table.Column<DateTime>(nullable: false),
+                    Data = table.Column<DateTime>(nullable: false),
                     OrigemId = table.Column<int>(nullable: true),
                     TipoDemanda = table.Column<int>(nullable: false),
                     ProcessoOrigem = table.Column<string>(nullable: true),
