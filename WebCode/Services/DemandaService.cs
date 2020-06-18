@@ -22,10 +22,22 @@ namespace WebCode.Services
 
         public void Insert(Demanda obj)
         {
-            obj.Origem = _context.Origem.First();
             _context.Add(obj);
             _context.SaveChanges();
         }
+
+        public Demanda FindById(int id)
+        {
+            return _context.Demanda.FirstOrDefault(obj => obj.Id == id);
+        }
+
+        public void Remove(int id)
+        {
+            var obj = _context.Demanda.Find(id);
+            _context.Demanda.Remove(obj);
+            _context.SaveChanges();
+        }
+             
 
     }
 }

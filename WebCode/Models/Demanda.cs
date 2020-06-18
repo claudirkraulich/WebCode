@@ -11,7 +11,7 @@ namespace WebCode.Models
         public int Id { get; set; }
         public string Numero { get; set; }
         public DateTime Data { get; set; }
-        public Origem Origem { get; set; }
+        public virtual Origem Origem { get; set; }
         public int OrigemId { get; set; }
         public TipoDemanda TipoDemanda { get; set; }
         public string ProcessoOrigem { get; set; }

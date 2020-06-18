@@ -1,4 +1,4 @@
-﻿@model WebCode.Models.Demanda
+﻿@model WebCode.Models.ViewModels.DemandaFormViewModel
 @{
     ViewData["Title"] = "Cadastrar Nova Demanda";
 }
@@ -11,48 +11,48 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div class="form-group">
-                <label asp-for="Numero" class="control-label"></label>
-                <input asp-for="Numero" class="form-control" />
+                <label asp-for="Demanda.Numero" class="control-label"></label>
+                <input asp-for="Demanda.Numero" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
+                <label asp-for="Demanda.Data" class="control-label"></label>
+                <input asp-for="Demanda.Data" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Origem" class="control-label"></label>
-                <input asp-for="Origem" class="form-control" />
+                <label asp-for="Demanda.OrigemId" class="control-label"></label>
+                <select asp-for="Demanda.OrigemId" asp-items="@(new SelectList(Model.Origens,"Id","Nome"))" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="TipoDemanda" class="control-label"></label>
-                <input asp-for="TipoDemanda" class="form-control" />
+                <label asp-for="Demanda.TipoDemanda" class="control-label"></label>
+                <input asp-for="Demanda.TipoDemanda" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="ProcessoOrigem" class="control-label"></label>
-                <input asp-for="ProcessoOrigem" class="form-control" />
+                <label asp-for="Demanda.ProcessoOrigem" class="control-label"></label>
+                <input asp-for="Demanda.ProcessoOrigem" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
+                <label asp-for="Demanda.Descricao" class="control-label"></label>
+                <input asp-for="Demanda.Descricao" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="NumeroProa" class="control-label"></label>
-                <input asp-for="NumeroProa" class="form-control" />
+                <label asp-for="Demanda.NumeroProa" class="control-label"></label>
+                <input asp-for="Demanda.NumeroProa" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="DataInicial" class="control-label"></label>
-                <input asp-for="DataInicial" class="form-control" />
+                <label asp-for="Demanda.DataInicial" class="control-label"></label>
+                <input asp-for="Demanda.DataInicial" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Prazo" class="control-label"></label>
-                <input asp-for="Prazo" class="form-control" />
+                <label asp-for="Demanda.Prazo" class="control-label"></label>
+                <input asp-for="Demanda.Prazo" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="DataFinal" class="control-label"></label>
-                <input asp-for="DataFinal" class="form-control" />
+                <label asp-for="Demanda.DataFinal" class="control-label"></label>
+                <input asp-for="Demanda.DataFinal" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <label asp-for="Demanda.Status" class="control-label"></label>
+                <input asp-for="Demanda.Status" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-default"/>

@@ -1,0 +1,49 @@
+﻿@model WebCode.Models.Demanda
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Você tem certeza que deseja Excluir o registro?</h3>
+
+<div>
+    <h4> Demanda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProcessoOrigem)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProcessoOrigem)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroProa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="Excluir" class="btn btn-danger"/>
+        <a asp-action="Index">Voltar para a Lista</a>
+    </form>
+</div>
+

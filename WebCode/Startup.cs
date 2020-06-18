@@ -44,6 +44,7 @@ namespace WebCode
             
             services.AddScoped<SeedingService>();
             services.AddScoped<DemandaService>();
+            services.AddScoped<OrigemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
