@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebCode.Models;
 
 namespace WebCode.Migrations
 {
     [DbContext(typeof(WebCodeContext))]
-    partial class WebCodeContextModelSnapshot : ModelSnapshot
+    [Migration("20200618070413_Chave_Estrangeira_Origem_Demanda")]
+    partial class Chave_Estrangeira_Origem_Demanda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace WebCode.Migrations
 
                     b.Property<DateTime>("DataInicial");
 
-                    b.Property<int>("DemandaId");
+                    b.Property<int?>("DemandaId");
 
                     b.Property<string>("NumeroProa");
 
@@ -99,8 +101,7 @@ namespace WebCode.Migrations
                 {
                     b.HasOne("WebCode.Models.Demanda", "Demanda")
                         .WithMany("Atividades")
-                        .HasForeignKey("DemandaId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DemandaId");
                 });
 
             modelBuilder.Entity("WebCode.Models.Demanda", b =>

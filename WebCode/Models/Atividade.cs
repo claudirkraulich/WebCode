@@ -16,6 +16,7 @@ namespace WebCode.Models
         public DateTime DataFinal { get; set; }
         public StatusAtividade Status { get; set; }
         public Demanda Demanda { get; set; }
+        public int DemandaId { get; set; }
 
         public Atividade()
         {

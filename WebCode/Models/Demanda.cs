@@ -12,6 +12,7 @@ namespace WebCode.Models
         public string Numero { get; set; }
         public DateTime Data { get; set; }
         public Origem Origem { get; set; }
+        public int OrigemId { get; set; }
         public TipoDemanda TipoDemanda { get; set; }
         public string ProcessoOrigem { get; set; }
         public string Descricao { get; set; }

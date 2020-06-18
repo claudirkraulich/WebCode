@@ -22,6 +22,7 @@ namespace WebCode.Services
 
         public void Insert(Demanda obj)
         {
+            obj.Origem = _context.Origem.First();
             _context.Add(obj);
             _context.SaveChanges();
         }

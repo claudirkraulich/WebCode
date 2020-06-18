@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebCode.Models;
 
 namespace WebCode.Migrations
 {
     [DbContext(typeof(WebCodeContext))]
-    partial class WebCodeContextModelSnapshot : ModelSnapshot
+    [Migration("20200618070721_Chave_Estrangeira_Demanda_Atividade")]
+    partial class Chave_Estrangeira_Demanda_Atividade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
