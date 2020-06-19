@@ -24,7 +24,7 @@ namespace WebCode.Services
         public async Task InsertAsync(Demanda obj)
         {
             _context.Add(obj);
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Demanda> FindByIdAsync(int id)
@@ -34,15 +34,23 @@ namespace WebCode.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Demanda.FindAsync(id);
-            _context.Demanda.Remove(obj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var obj = await _context.Demanda.FindAsync(id);
+                _context.Demanda.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateException e)
+            {
+                throw new IntegrityException("Não foi possível excluir a Demanda pois existem Atividades relacionadas");
+            }
+
         }
-             
+
         public async Task UpdateAsync(Demanda obj)
         {
             bool hasAny = await _context.Demanda.AnyAsync(x => x.Id == obj.Id);
-            if (!hasAny) 
+            if (!hasAny)
             {
                 throw new NotFoundException("Id não localizado");
             }
@@ -55,7 +63,7 @@ namespace WebCode.Services
             {
                 throw new DbConcurrencyException(e.Message);
             }
-            
+
         }
 
     }
