@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using WebCode.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebCode.Models
 {
@@ -9,16 +10,30 @@ namespace WebCode.Models
     {
 
         public int Id { get; set; }
+        [Display(Name = "Número")]
         public string Numero { get; set; }
+        [DataType (DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime Data { get; set; }
         public virtual Origem Origem { get; set; }
+        [Display(Name = "Origem")]
         public int OrigemId { get; set; }
+        [Display(Name = "Tipo")]
         public TipoDemanda TipoDemanda { get; set; }
+        [Display(Name = "Processo Origem")]
         public string ProcessoOrigem { get; set; }
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+        [Display(Name = "Número Proa")]
         public string NumeroProa { get; set; }
+        [Display(Name = "Data Inicial")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataInicial { get; set; }
         public int Prazo { get; set; }
+        [Display(Name = "Data Final")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataFinal { get; set; }
         public StatusDemanda Status { get; set; }
         public ICollection<Atividade> Atividades { get; set; } = new List<Atividade>();
