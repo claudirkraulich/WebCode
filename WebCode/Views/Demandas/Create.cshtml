@@ -5,18 +5,19 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<h4>Demanda</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create">            
             <div class="form-group">
                 <label asp-for="Demanda.Numero" class="control-label"></label>
                 <input asp-for="Demanda.Numero" class="form-control" />
+                <span asp-validation-for="Demanda.Numero" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.Data" class="control-label"></label>
                 <input asp-for="Demanda.Data" class="form-control" />
+                <span asp-validation-for="Demanda.Data" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.OrigemId" class="control-label"></label>
@@ -25,6 +26,7 @@
             <div class="form-group">
                 <label asp-for="Demanda.TipoDemanda" class="control-label"></label>
                 <input asp-for="Demanda.TipoDemanda" class="form-control" />
+                <span asp-validation-for="Demanda.TipoDemanda" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.ProcessoOrigem" class="control-label"></label>
@@ -33,6 +35,7 @@
             <div class="form-group">
                 <label asp-for="Demanda.Descricao" class="control-label"></label>
                 <input asp-for="Demanda.Descricao" class="form-control" />
+                <span asp-validation-for="Demanda.Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.NumeroProa" class="control-label"></label>
@@ -41,24 +44,32 @@
             <div class="form-group">
                 <label asp-for="Demanda.DataInicial" class="control-label"></label>
                 <input asp-for="Demanda.DataInicial" class="form-control" />
+                <span asp-validation-for="Demanda.DataInicial" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.Prazo" class="control-label"></label>
                 <input asp-for="Demanda.Prazo" class="form-control" />
+                <span asp-validation-for="Demanda.Prazo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.DataFinal" class="control-label"></label>
                 <input asp-for="Demanda.DataFinal" class="form-control" />
+                <span asp-validation-for="Demanda.DataFinal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Demanda.Status" class="control-label"></label>
                 <input asp-for="Demanda.Status" class="form-control" />
+                <span asp-validation-for="Demanda.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-default"/>
+                <input type="submit" value="Salvar" class="btn btn-default" />
+                <a asp-action="Index"> Voltar para a Lista </a>
             </div>
-
         </form>
     </div>
 </div>
+
+@section Scripts{ 
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

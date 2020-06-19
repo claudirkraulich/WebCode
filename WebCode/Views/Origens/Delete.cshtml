@@ -1,14 +1,18 @@
 ﻿@model WebCode.Models.Origem
 
 @{
-    ViewData["Title"] = "Excluir";
+    ViewData["Title"] = "Exclusão da Origem";
 }
 
-<h2>Excluir</h2>
+<hr />
 
-<h3>Você tem certeza que deseja Excluir o registro?</h3>
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<h3>Você tem certeza que deseja excluir o registro?</h3>
+
 <div>
-    <h4>Origem</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,10 +22,10 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Excluir" class="btn btn-default" /> |
-        <a asp-action="Index">Voltar para a Lista</a>
+        <input type="submit" value="Excluir" class="btn btn-danger" /> 
+        <a asp-action="Index"> Voltar para a Lista </a>
     </form>
 </div>

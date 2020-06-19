@@ -1,12 +1,11 @@
 ﻿@model WebCode.Models.Origem
 
 @{
-    ViewData["Title"] = "Criar Novo";
+    ViewData["Title"] = "Cadastrar Nova Origem";
 }
 
-<h2>Create</h2>
+<h2>@ViewData["Title"]</h2>
 
-<h4>Origem</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,14 +17,11 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Criar Novo" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
+                <a asp-action="Index"> Voltar para Lista </a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar para Lista</a>
 </div>
 
 @section Scripts {

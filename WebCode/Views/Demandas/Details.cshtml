@@ -1,11 +1,12 @@
 ﻿@model WebCode.Models.Demanda
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes da Demanda";
 }
+
+<hr />
 
 <h2>@ViewData["Title"]</h2>
 
-<h4> Demanda</h4>
 <hr />
 <div>
     <dl class="dl-horizontal">
@@ -50,7 +51,7 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-default">Editar</a>
-    <a asp-action="Index">Voltar para a Lista</a>
+    <a asp-action="Index"> Voltar para a Lista </a>
 </div>
 <div>
 

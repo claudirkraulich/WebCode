@@ -38,6 +38,13 @@ namespace WebCode.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Demanda demanda)
         {
+            if (!ModelState.IsValid)   //controller testa envio do formulário caso o javascript do usuario estiver desabilitado - evita cadastro null
+            {
+                var origens = _origemService.FindAll();
+                var viewModel = new DemandaFormViewModel { Demanda = demanda, Origens = origens };
+                return View(viewModel);
+            }
+            
             _demandaService.Insert(demanda);
             return RedirectToAction(nameof(Index));
         }
@@ -100,6 +107,13 @@ namespace WebCode.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Demanda demanda)
         {
+            if (!ModelState.IsValid)   //controller testa envio do formulário caso o javascript do usuario estiver desabilitado - evita cadastro null
+            {
+                var origens = _origemService.FindAll();
+                var viewModel = new DemandaFormViewModel { Demanda = demanda, Origens = origens };
+                return View(viewModel);
+            }
+
             if (id != demanda.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não corresponde" });

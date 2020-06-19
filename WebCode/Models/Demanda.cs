@@ -10,31 +10,49 @@ namespace WebCode.Models
     {
 
         public int Id { get; set; }
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [Display(Name = "Número")]
         public string Numero { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [DataType (DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]      
         public DateTime Data { get; set; }
+
         public virtual Origem Origem { get; set; }
-        [Display(Name = "Origem")]
+        [Display(Name = "Origem")]        
         public int OrigemId { get; set; }
-        [Display(Name = "Tipo")]
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "Tipo")]        
         public TipoDemanda TipoDemanda { get; set; }
+
         [Display(Name = "Processo Origem")]
         public string ProcessoOrigem { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+
         [Display(Name = "Número Proa")]
         public string NumeroProa { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [Display(Name = "Data Inicial")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]        
         public DateTime DataInicial { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public int Prazo { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [Display(Name = "Data Final")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]        
         public DateTime DataFinal { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public StatusDemanda Status { get; set; }
         public ICollection<Atividade> Atividades { get; set; } = new List<Atividade>();
         

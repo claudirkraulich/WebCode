@@ -1,12 +1,13 @@
 ﻿@model WebCode.Models.Origem
 
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Edição da Origem";
 }
 
-<h2>Edit</h2>
+<hr />
 
-<h4>Origem</h4>
+<h2>@ViewData["Title"]</h2>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,13 +21,10 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-default" />
+                <a asp-action="Index"> Voltar para a Lista </a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar para a Lista</a>
 </div>
 
 @section Scripts {
