@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebCode.Models;
 
 namespace WebCode.Services
@@ -13,9 +15,9 @@ namespace WebCode.Services
             _context = context;
         }
 
-        public List<Origem> FindAll()
+        public async Task<List<Origem>> FindAllAsync()
         {
-            return _context.Origem.OrderBy(x => x.Nome).ToList();
+            return await _context.Origem.OrderBy(x => x.Nome).ToListAsync();
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebCode.Models;
 using WebCode.Models.ViewModels;
@@ -20,15 +21,15 @@ namespace WebCode.Controllers
             _origemService = origemService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _demandaService.FindAll();
+            var list = await _demandaService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var origens = _origemService.FindAll();
+            var origens = await _origemService.FindAllAsync();
             var viewModel = new DemandaFormViewModel { Origens = origens };
             return View(viewModel);
 
@@ -36,26 +37,26 @@ namespace WebCode.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Demanda demanda)
+        public async Task<IActionResult> Create(Demanda demanda)
         {
             if (!ModelState.IsValid)   //controller testa envio do formulário caso o javascript do usuario estiver desabilitado - evita cadastro null
             {
-                var origens = _origemService.FindAll();
+                var origens = await _origemService.FindAllAsync();
                 var viewModel = new DemandaFormViewModel { Demanda = demanda, Origens = origens };
                 return View(viewModel);
             }
             
-            _demandaService.Insert(demanda);
+            await _demandaService.InsertAsync(demanda);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
-            var obj = _demandaService.FindById(id.Value);
+            var obj = await _demandaService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não localizado" });
@@ -65,19 +66,19 @@ namespace WebCode.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _demandaService.Remove(id);
+            await _demandaService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
-            var obj = _demandaService.FindById(id.Value);
+            var obj = await _demandaService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não localizado" });
@@ -85,31 +86,31 @@ namespace WebCode.Controllers
             return View(obj);
         }
         // Edit versão GET
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
 
-            var obj = _demandaService.FindById(id.Value);
+            var obj = await _demandaService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não localizado" });
             }
 
-            List<Origem> origens = _origemService.FindAll();
+            List<Origem> origens = await _origemService.FindAllAsync();
             DemandaFormViewModel viewModel = new DemandaFormViewModel { Demanda = obj, Origens = origens };
             return View(viewModel);
         }
         // Edit versão POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Demanda demanda)
+        public async Task<IActionResult> Edit(int id, Demanda demanda)
         {
             if (!ModelState.IsValid)   //controller testa envio do formulário caso o javascript do usuario estiver desabilitado - evita cadastro null
             {
-                var origens = _origemService.FindAll();
+                var origens = await _origemService.FindAllAsync();
                 var viewModel = new DemandaFormViewModel { Demanda = demanda, Origens = origens };
                 return View(viewModel);
             }
@@ -120,7 +121,7 @@ namespace WebCode.Controllers
             }
             try
             {
-                _demandaService.Update(demanda);
+                await _demandaService.UpdateAsync(demanda);
                 return RedirectToAction(nameof(Index));
             }
             catch (NotFoundException e)
