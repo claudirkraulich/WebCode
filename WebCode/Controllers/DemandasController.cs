@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Operations;
 using WebCode.Models;
 using WebCode.Models.ViewModels;
 using WebCode.Services;
+using WebCode.Services.Exceptions;
 
 namespace WebCode.Controllers
 {
@@ -19,7 +21,7 @@ namespace WebCode.Controllers
             _demandaService = demandaService;
             _origemService = origemService;
         }
-        
+
         public IActionResult Index()
         {
             var list = _demandaService.FindAll();
@@ -30,8 +32,8 @@ namespace WebCode.Controllers
         {
             var origens = _origemService.FindAll();
             var viewModel = new DemandaFormViewModel { Origens = origens };
-            return View(viewModel);              
-                
+            return View(viewModel);
+
         }
 
         [HttpPost]
@@ -64,6 +66,59 @@ namespace WebCode.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _demandaService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
 
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _demandaService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            List<Origem> origens = _origemService.FindAll();
+            DemandaFormViewModel viewModel = new DemandaFormViewModel { Demanda = obj, Origens = origens };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Demanda demanda)
+        {
+            if (id != demanda.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _demandaService.Update(demanda);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

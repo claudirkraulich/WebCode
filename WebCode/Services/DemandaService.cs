@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebCode.Models;
+using WebCode.Services.Exceptions;
 
 namespace WebCode.Services
 {
@@ -17,7 +17,7 @@ namespace WebCode.Services
 
         public List<Demanda> FindAll()
         {
-            return _context.Demanda.ToList();
+            return _context.Demanda.Include(obj => obj.Origem).ToList();
         }
 
         public void Insert(Demanda obj)
@@ -28,7 +28,7 @@ namespace WebCode.Services
 
         public Demanda FindById(int id)
         {
-            return _context.Demanda.FirstOrDefault(obj => obj.Id == id);
+            return _context.Demanda.Include(obj => obj.Origem).FirstOrDefault(obj => obj.Id == id);
         }
 
         public void Remove(int id)
@@ -38,6 +38,23 @@ namespace WebCode.Services
             _context.SaveChanges();
         }
              
+        public void Update(Demanda obj)
+        {
+            if (!_context.Demanda.Any(x => x.Id == obj.Id)) 
+            {
+                throw new NotFoundException("Id não localizado");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
+            
+        }
 
     }
 }
