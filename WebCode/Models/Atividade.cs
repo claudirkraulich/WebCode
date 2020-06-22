@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using WebCode.Models.Enums;
 
 namespace WebCode.Models
@@ -6,17 +7,47 @@ namespace WebCode.Models
     public class Atividade
     {
         public int Id { get; set; }
-        public string Acao { get; set; }
-        public string NumeroProa { get; set; }
-        public string Setor { get; set; }
-        public string Responsavel { get; set; }
-        public DateTime DataInicial { get; set; }
-        public int Prazo { get; set; }
-        public string TipoPrazo { get; set; }
-        public DateTime DataFinal { get; set; }
-        public StatusAtividade Status { get; set; }
-        public Demanda Demanda { get; set; }
+
+        public virtual Demanda Demanda { get; set; }
+        [Display(Name = "Demanda")]
         public int DemandaId { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "Ação")]
+        public string Acao { get; set; }
+
+        [Display(Name = "Número Proa")]
+        public string NumeroProa { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]       
+        public string Setor { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "Responsável")]
+        public string Responsavel { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "Data Inicial")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DataInicial { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        public int Prazo { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "Tipo Prazo")]
+        public string TipoPrazo { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "Data Final")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DataFinal { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        public StatusAtividade Status { get; set; }
+
 
         public Atividade()
         {

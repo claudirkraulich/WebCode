@@ -141,11 +141,11 @@ namespace WebCode.Controllers
             }
         }
 
-        public IActionResult Error(string Message)
+        public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel
             {
-                Message = Message,
+                Message = message,
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             };
             return View(viewModel);

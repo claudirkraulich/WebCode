@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WebCode.Models;
 using WebCode.Models.ViewModels;
 using WebCode.Services;
@@ -10,36 +9,45 @@ using WebCode.Services.Exceptions;
 
 namespace WebCode.Controllers
 {
-    public class OrigensController : Controller
+    public class AtividadesController : Controller
     {
-        private readonly OrigemService _origemService;
+        private readonly AtividadeService _atividadeService;
+        private readonly DemandaService _demandaService;
+      
 
-        public OrigensController(OrigemService origemService)
+        public AtividadesController(AtividadeService atividadeService, DemandaService demandaService)
         {
-            _origemService = origemService;
+            _atividadeService = atividadeService;
+            _demandaService = demandaService;
+            
         }
-                
+
         public async Task<IActionResult> Index()
         {
-            var list = await _origemService.FindAllAsync();
+            var list = await _atividadeService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var demandas = await _demandaService.FindAllAsync();
+            var viewModel = new AtividadeFormViewModel { Demandas = demandas };
+            return View(viewModel);
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Origem origem)
+        public async Task<IActionResult> Create(Atividade atividade)
         {
             if (!ModelState.IsValid)   //controller testa envio do formulário caso o javascript do usuario estiver desabilitado - evita cadastro null
             {
-               return View();
+                var demandas = await _demandaService.FindAllAsync();
+                var viewModel = new AtividadeFormViewModel { Atividade = atividade , Demandas = demandas };
+                return View(viewModel);
             }
 
-            await _origemService.InsertAsync(origem);
+            await _atividadeService.InsertAsync(atividade);
             return RedirectToAction(nameof(Index));
         }
 
@@ -49,7 +57,7 @@ namespace WebCode.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
-            var obj = await _origemService.FindByIdAsync(id.Value);
+            var obj = await _atividadeService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não localizado" });
@@ -63,7 +71,7 @@ namespace WebCode.Controllers
         {
             try
             {
-                await _origemService.RemoveAsync(id);
+                await _atividadeService.RemoveAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch (IntegrityException e)
@@ -78,7 +86,7 @@ namespace WebCode.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
-            var obj = await _origemService.FindByIdAsync(id.Value);
+            var obj = await _atividadeService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não localizado" });
@@ -93,32 +101,35 @@ namespace WebCode.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
 
-            var obj = await _origemService.FindByIdAsync(id.Value);
+            var obj = await _atividadeService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não localizado" });
             }
-            
-            return View(obj);
-        }
 
-        
+            List<Demanda> demandas = await _demandaService.FindAllAsync();
+            AtividadeFormViewModel viewModel = new AtividadeFormViewModel { Atividade = obj, Demandas = demandas };
+            return View(viewModel);
+        }
+        // Edit versão POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Origem origem)
+        public async Task<IActionResult> Edit(int id, Atividade atividade)
         {
             if (!ModelState.IsValid)   //controller testa envio do formulário caso o javascript do usuario estiver desabilitado - evita cadastro null
             {
-               return View();
+                var demandas = await _demandaService.FindAllAsync();
+                var viewModel = new AtividadeFormViewModel { Atividade = atividade, Demandas = demandas };
+                return View(viewModel);
             }
 
-            if (id != origem.Id)
+            if (id != atividade.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não corresponde" });
             }
             try
             {
-                await _origemService.UpdateAsync(origem);
+                await _atividadeService.UpdateAsync(atividade);
                 return RedirectToAction(nameof(Index));
             }
             catch (NotFoundException e)

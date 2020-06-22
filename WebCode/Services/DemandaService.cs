@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebCode.Models;
@@ -40,11 +39,10 @@ namespace WebCode.Services
                 _context.Demanda.Remove(obj);
                 await _context.SaveChangesAsync();
             }
-            catch(DbUpdateException e)
+            catch(DbUpdateException)
             {
                 throw new IntegrityException("Não foi possível excluir a Demanda pois existem Atividades relacionadas");
             }
-
         }
 
         public async Task UpdateAsync(Demanda obj)
@@ -63,8 +61,6 @@ namespace WebCode.Services
             {
                 throw new DbConcurrencyException(e.Message);
             }
-
         }
-
     }
 }

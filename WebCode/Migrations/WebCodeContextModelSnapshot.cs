@@ -100,7 +100,7 @@ namespace WebCode.Migrations
                     b.HasOne("WebCode.Models.Demanda", "Demanda")
                         .WithMany("Atividades")
                         .HasForeignKey("DemandaId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("WebCode.Models.Demanda", b =>
@@ -108,7 +108,7 @@ namespace WebCode.Migrations
                     b.HasOne("WebCode.Models.Origem", "Origem")
                         .WithMany("Demandas")
                         .HasForeignKey("OrigemId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

@@ -23,7 +23,7 @@ namespace WebCode.Migrations
                 column: "OrigemId",
                 principalTable: "Origem",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

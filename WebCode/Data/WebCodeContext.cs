@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using WebCode.Data;
 
 namespace WebCode.Models
 {

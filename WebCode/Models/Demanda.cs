@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using WebCode.Models.Enums;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +9,7 @@ namespace WebCode.Models
     {
 
         public int Id { get; set; }
+
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [Display(Name = "Número")]
         public string Numero { get; set; }
@@ -54,6 +54,7 @@ namespace WebCode.Models
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public StatusDemanda Status { get; set; }
+
         public ICollection<Atividade> Atividades { get; set; } = new List<Atividade>();
         
         public Demanda()

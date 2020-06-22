@@ -1,0 +1,72 @@
+﻿@model WebCode.Models.ViewModels.AtividadeFormViewModel
+@{
+    ViewData["Title"] = "Edição da Atividade";
+}
+
+<hr />
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Atividade.Id" />
+            <div class="form-group">
+                <label asp-for="Atividade.DemandaId" class="control-label"></label>
+                <select asp-for="Atividade.DemandaId" asp-items="@(new SelectList(Model.Demandas,"Id","Numero"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.Acao" class="control-label"></label>
+                <input asp-for="Atividade.Acao" class="form-control" />
+                <span asp-validation-for="Atividade.Acao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.NumeroProa" class="control-label"></label>
+                <input asp-for="Atividade.NumeroProa" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.Setor" class="control-label"></label>
+                <input asp-for="Atividade.Setor" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.Responsavel" class="control-label"></label>
+                <input asp-for="Atividade.Responsavel" class="form-control" />
+                <span asp-validation-for="Atividade.Responsavel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.DataInicial" class="control-label"></label>
+                <input asp-for="Atividade.DataInicial" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.Prazo" class="control-label"></label>
+                <input asp-for="Atividade.Prazo" class="form-control" />
+                <span asp-validation-for="Atividade.Prazo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.TipoPrazo" class="control-label"></label>
+                <input asp-for="Atividade.TipoPrazo" class="form-control" />
+                <span asp-validation-for="Atividade.TipoPrazo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.DataFinal" class="control-label"></label>
+                <input asp-for="Atividade.DataFinal" class="form-control" />
+                <span asp-validation-for="Atividade.DataFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Atividade.Status" class="control-label"></label>
+                <input asp-for="Atividade.Status" class="form-control" />
+                <span asp-validation-for="Atividade.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+                <a asp-action="Index"> Voltar para a Lista </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
