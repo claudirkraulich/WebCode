@@ -5,7 +5,7 @@
 
 <hr />
 
-<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Title"]</h3>
 
 <hr />
 
@@ -53,8 +53,8 @@
     </dl>
 
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id"/>
-        <input type="submit" value="Excluir" class="btn btn-danger"/>
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger"><span style="font-size:12px" class="glyphicon glyphicon-remove"></span>   Excluir</button>
         <a asp-action="Index"> Voltar para a Lista </a>
     </form>
 </div>

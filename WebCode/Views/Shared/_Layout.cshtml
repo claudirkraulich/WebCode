@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Code</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-paper.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -30,12 +30,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Demandas" asp-action="Index">Demandas</a></li>
-                    <li><a asp-area="" asp-controller="Atividades" asp-action="Index">Atividades</a></li>
-                    <li><a asp-area="" asp-controller="Origens" asp-action="Index">Origens</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contato</a></li>
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><span style="font-size:12px" class="glyphicon glyphicon-home"></span>   Início   </a></li>
+                    <li><a asp-area="" asp-controller="Demandas" asp-action="Index"><span style="font-size:12px" class="glyphicon glyphicon-download-alt"></span>   Demandas   </a></li>
+                    <li><a asp-area="" asp-controller="Atividades" asp-action="Index"><span style="font-size:12px" class="glyphicon glyphicon-file"></span>   Atividades   </a></li>
+                    <li><a asp-area="" asp-controller="Sindicancias" asp-action="Index"><span style="font-size:12px" class="glyphicon glyphicon-eye-open"></span>   Sindicâncias   </a></li>
+                    <li><a asp-area="" asp-controller="Inqueritos" asp-action="Index"><span style="font-size:12px" class="glyphicon glyphicon-open-file"></span>   Inquéritos   </a></li>
+                    <li><a asp-area="" asp-controller="Origens" asp-action="Index"><span style="font-size:12px" class="glyphicon glyphicon-chevron-down"></span>   Origens   </a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About"><span style="font-size:12px" class="glyphicon glyphicon-info-sign"></span>   Sobre   </a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact"><span style="font-size:12px" class="glyphicon glyphicon-envelope"></span>   Contato   </a></li>
                 </ul>
             </div>
         </div>
